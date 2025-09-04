@@ -175,6 +175,11 @@ function applyEffectTo(actor: RoundedWindowActor) {
  * @param actor - The window actor to remove the effect from.
  */
 function removeEffectFrom(actor: RoundedWindowActor) {
+    const texture = actor.get_texture();
+    if (texture) {
+        disconnectAll(texture);
+    }
+
     disconnectAll(actor);
     disconnectAll(actor.metaWindow);
 
