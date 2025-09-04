@@ -67,10 +67,10 @@ export function addShadowsInWorkspaceSwitch(
 
                 const frameRect = win.get_frame_rect();
 
-                shadowClone.width = frameRect.width + paddings * 2;
-                shadowClone.height = frameRect.height + paddings * 2;
-                shadowClone.x = clone.x + frameRect.x - actor.x - paddings;
-                shadowClone.y = clone.y + frameRect.y - actor.y - paddings;
+                shadowClone.width = Math.round(frameRect.width + paddings * 2);
+                shadowClone.height = Math.round(frameRect.height + paddings * 2);
+                shadowClone.x = Math.round(clone.x + frameRect.x - actor.x - paddings);
+                shadowClone.y = Math.round(clone.y + frameRect.y - actor.y - paddings);
 
                 // Compatibility with Desktop Cube
                 const notifyId = clone.connect('notify::translation-z', () => {

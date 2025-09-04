@@ -131,10 +131,13 @@ const OverviewShadowActorClone = GObject.registerClass(
                 windowScaleFactor(metaWindow);
 
             // Setup the bounding box of the shadow actor.
-            box.set_origin(-paddings, -paddings);
+            box.set_origin(
+                Math.round(-paddings),
+                Math.round(-paddings)
+            );
             box.set_size(
-                windowContainerBox.get_width() + 2 * paddings,
-                windowContainerBox.get_height() + 2 * paddings,
+                Math.round(windowContainerBox.get_width() + 2 * paddings),
+                Math.round(windowContainerBox.get_height() + 2 * paddings),
             );
 
             // Apply the bounding box.
