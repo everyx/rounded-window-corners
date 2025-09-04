@@ -166,6 +166,9 @@ function applyEffectTo(actor: RoundedWindowActor) {
         handlers.onFocusChanged(actor);
     });
 
+    // Destroy shadow when window is destroyed
+    connect(actor, 'destroy', () => handlers.onWindowDestroyed(actor));
+
     handlers.onAddEffect(actor);
 }
 

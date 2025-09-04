@@ -197,6 +197,10 @@ function createShadow(actor: Meta.WindowActor): St.Bin {
  * @param actor - The window actor to refresh the shadow for.
  */
 function refreshShadow(actor: RoundedWindowActor) {
+    if (!actor?.metaWindow) {
+        return;
+    }
+
     const win = actor.metaWindow;
     const shadow = actor.rwcCustomData?.shadow;
     if (!shadow) {
@@ -213,11 +217,26 @@ function refreshShadow(actor: RoundedWindowActor) {
 }
 
 /**
+ * Handler for when a window is destroyed.
+ *
+ * @param actor - The window actor that was destroyed.
+ */
+export function onWindowDestroyed(actor: RoundedWindowActor): void {
+    const shadow = actor.rwcCustomData?.shadow;
+    if (shadow) {
+        shadow.destroy();
+    }
+}
+
+/**
  * Refresh rounded corners state and settings for a window.
  *
  * @param actor - The window actor to refresh the rounded corners settings for.
  */
 function refreshRoundedCorners(actor: RoundedWindowActor): void {
+    if (!actor || actor.is_destroyed()) {
+        return;
+    }
     const win = actor.metaWindow;
 
     const windowInfo = actor.rwcCustomData;
